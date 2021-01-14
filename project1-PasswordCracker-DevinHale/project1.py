@@ -26,18 +26,10 @@ attempt = 0
 
 choice = "y"
 
-# PY: BE CAREFUL here. It's in the same folder. So while this
-# no doubt worked for you in your environment, it didn't for
-# me when I just tried to run it. Best to just use the "current"
-# directory (as I've done below) or to pass this as a command
-# line parameter.
-# with open("project1z-DevinHale1\password.txt", 'r') as dictionary:
 with open("password.txt", 'r') as dictionary:
-    # PY: I don't see a purpose to this while loop...also causes a problem...see below
+
     while attempt < 7092:
-        # PY: Pretty huge bug here. You are reading a line from the file and setting
-        # it to "line" here. Then you are ignoring that one and reading the NEXT line
-        # as dictpass. SOOOO, you are skipping every other password in you file. 
+ 
         for line in dictionary:
             dictpass = dictionary.readline()
             dictpwk = list(dictpass.strip())
@@ -72,14 +64,11 @@ with open("password.txt", 'r') as dictionary:
             if dictpwk == pwlist:
                 print("Your password: '" + pw +  "' was dictionated in " + str(attempt) + " attempts")
                 break
-                # PY: Another big error here. This break statements exits
-                # the "for" loop. You are then inside of your while attempt < 7092 loop.
-                # This ends up being stuck in an infinite loop because it's ALWAYS < 7092
+
 
 
 print("Dictionary Attack Failed - Attempting Brute Force...")
 
-# PY: what's the point of this check?? choice is always "y" at this point
 if choice == "y":
 
     while pwk != pwlist and dictpwk != pwlist:
